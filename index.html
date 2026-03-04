@@ -7,29 +7,39 @@
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
+  <body>
+  <!-- PC背景（固定） -->
+  <div class="pc-bg" aria-hidden="true">
+    <div class="pc-bg__inner"></div>
+  </div>
+
+  <!-- 固定CTA（トップ固定） -->
+  <div class="cta-fixed">
+    <a class="cta-fixed__link" href="#apply" aria-label="3/24(火)の講座に申し込む">
+      <img src="assets/img/CTA.png" alt="3/24(火)の講座に申し込む">
+    </a>
+  </div>
+
+  <!-- 中央コンテンツ（スマホ幅390px） -->
   <div class="lp">
-
-    <header class="hero">
-      <div class="hero-inner">
-        <p class="hero-sub">初心者さん向け</p>
-        <h1 class="hero-title">
-          Canvaで<br>
-          「伝わる」デザインを作ろう
-        </h1>
-        <p class="hero-desc">
-          テンプレを使いながら、ちゃんと“伝わる”コツを学びます。
-        </p>
-
-        <a href="#apply" class="btn">今すぐ申し込む</a>
-
-        <div class="hero-image">
-          <img src="assets/img/hero.png" alt="Canva講座イメージ">
-        </div>
-      </div>
+    <header class="hero" id="top">
+      <!-- ここは次で作り込む（FV） -->
     </header>
 
+    <main>
+      <section class="problem" id="problem"></section>
+      <section class="no-sense" id="no-sense"></section>
+      <section class="variation" id="variation"></section>
+      <section class="contents" id="contents"></section>
+      <section class="details" id="details"></section>
+      <section class="instructor" id="instructor"></section>
+      <section class="closing" id="apply"></section>
+    </main>
+
+    <footer class="footer"></footer>
   </div>
 
   <script src="js/main.js" defer></script>
+</body>
 </body>
 </html>

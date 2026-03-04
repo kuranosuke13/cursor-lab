@@ -101,3 +101,112 @@ img{
 .hero-image{
   margin-top:24px;
 }
+:root{
+  --lp-width: 390px;
+  --cta-h: 56px;            /* CTAの実高さに合わせて後で微調整 */
+  --bg-cream: #f6efcf;      /* 背景の薄クリーム */
+}
+
+/* 中央390px */
+.lp{
+  width: 100%;
+  max-width: var(--lp-width);
+  margin: 0 auto;
+  background: #fff;
+  min-height: 100vh;
+  position: relative;
+  z-index: 2; /* 背景より前 */
+  padding-top: var(--cta-h); /* CTA分だけ押し下げて隠れ防止 */
+}
+
+/* PC背景 固定（モバイルは非表示） */
+.pc-bg{
+  display:none;
+}
+
+@media (min-width: 768px){
+  body{
+    background: var(--bg-cream);
+  }
+
+  .pc-bg{
+    display:block;
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  /* 背景画像（1920推奨）をセンター固定 */
+  .pc-bg__inner{
+    position:absolute;
+    left:50%;
+    top:0;
+    transform: translateX(-50%);
+    width: min(1920px, 100vw); /* 1920を基準に縮む */
+    height: 100%;
+    background-image: url("../assets/img/background.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center top;
+  }
+
+  /* 背景内の “KOMATTA…” を横移動（疑似） */
+  .pc-bg__inner::before{
+    content:"KOMATTA...   KOMATTA...   KOMATTA...   KOMATTA...   KOMATTA...";
+    position:absolute;
+    left:-40%;
+    top: 18%;
+    font-size: clamp(40px, 6vw, 96px);
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    color: rgba(255,255,255,0.55);
+    white-space: nowrap;
+    animation: bg-marquee 28s linear infinite;
+    text-shadow: 0 2px 0 rgba(0,0,0,0.02);
+  }
+
+  .pc-bg__inner::after{
+    content:"KOMATTA...   KOMATTA...   KOMATTA...";
+    position:absolute;
+    left:-30%;
+    top: 62%;
+    font-size: clamp(32px, 5vw, 72px);
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    color: rgba(255,255,255,0.45);
+    white-space: nowrap;
+    animation: bg-marquee 36s linear infinite;
+  }
+
+  @keyframes bg-marquee{
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(40%); } /* 右→左じゃなく見える場合は符号逆にする */
+  }
+}
+
+/* 固定CTA（常にTOP固定で追従） */
+.cta-fixed{
+  position: fixed;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: var(--lp-width);
+  height: var(--cta-h);
+  z-index: 10;
+}
+
+.cta-fixed__link{
+  display:block;
+  width:100%;
+  height:100%;
+}
+
+.cta-fixed img{
+  width:100%;
+  height:100%;
+  object-fit: cover;
+  display:block;
+}
