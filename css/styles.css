@@ -1,192 +1,45 @@
-* { box-sizing: border-box; }
-html, body { margin: 0; padding: 0; }
-body { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; }
-main { padding: 40px; }
-:root{
-  --lp-max: 420px;   /* カンプがスマホ寄りなら420〜480で調整 */
-  --pad: 16px;
-}
-
+/* ========== base ========== */
 *{ box-sizing:border-box; }
 html,body{ margin:0; padding:0; }
-body{
-  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
-  background:#f3f3f3;
-}
 
-.lp{
-  max-width: var(--lp-max);
-  margin: 0 auto;
-  background:#fff;
-  min-height:100vh;
-}
-section, header, footer{
-  padding: 24px var(--pad);
-}
 :root{
   --lp-width: 390px;
-  --pad: 16px;
-
-  --primary: #ff8f66;   /* ボタン系（仮） */
-  --bg-soft: #fff7ec;   /* 薄い背景（仮） */
+  --cta-h: 56px;          /* CTAの実高さに合わせて後で調整 */
+  --bg-cream: #f6efcf;    /* PC背景カラー */
   --text-main: #333;
 }
 
-*{ box-sizing: border-box; }
-
-html,body{
-  margin:0;
-  padding:0;
-}
-
 body{
-  font-family: "Noto Sans JP", system-ui, -apple-system, sans-serif;
-  background:#e9e9e9;
-  color:var(--text-main);
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  color: var(--text-main);
+  background: #e9e9e9; /* SP時の外側 */
 }
 
-.lp{
-  width:100%;
-  max-width: var(--lp-width);
-  margin:0 auto;
-  background:#fff;
-  min-height:100vh;
-}
-section, header, footer{
-  padding:32px var(--pad);
-}
-h1,h2,h3,p{
-  margin:0 0 12px 0;
-}
+/* 画像は基本100% */
 img{
   width:100%;
   height:auto;
   display:block;
 }
-.btn{
-  display:block;
-  width:100%;
-  padding:14px;
-  border-radius:999px;
-  text-align:center;
-  text-decoration:none;
-  font-weight:700;
-  background:var(--primary);
-  color:#fff;
-}
-.hero{
-  background: var(--bg-soft);
-  text-align:center;
-}
 
-.hero-sub{
-  font-size:14px;
-  font-weight:600;
-  margin-bottom:8px;
-}
-
-.hero-title{
-  font-size:24px;
-  line-height:1.4;
-  font-weight:800;
-  margin-bottom:16px;
-}
-
-.hero-desc{
-  font-size:14px;
-  line-height:1.6;
-  margin-bottom:20px;
-}
-
-.hero-image{
-  margin-top:24px;
-}
-:root{
-  --lp-width: 390px;
-  --cta-h: 56px;            /* CTAの実高さに合わせて後で微調整 */
-  --bg-cream: #f6efcf;      /* 背景の薄クリーム */
-}
-
-/* 中央390px */
+/* ========== layout (LP) ========== */
 .lp{
-  width: 100%;
+  width:100%;
   max-width: var(--lp-width);
   margin: 0 auto;
-  background: #fff;
-  min-height: 100vh;
-  position: relative;
-  z-index: 2; /* 背景より前 */
-  padding-top: var(--cta-h); /* CTA分だけ押し下げて隠れ防止 */
+  background:#fff;
+  min-height:100vh;
+  position:relative;
+  z-index:2; /* PC背景より前 */
+  padding-top: var(--cta-h); /* CTA分の余白 */
 }
 
-/* PC背景 固定（モバイルは非表示） */
-.pc-bg{
-  display:none;
+/* セクションは仮で余白だけ */
+section, header, footer{
+  padding: 24px 16px;
 }
 
-@media (min-width: 768px){
-  body{
-    background: var(--bg-cream);
-  }
-
-  .pc-bg{
-    display:block;
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-    overflow: hidden;
-  }
-
-  /* 背景画像（1920推奨）をセンター固定 */
-  .pc-bg__inner{
-    position:absolute;
-    left:50%;
-    top:0;
-    transform: translateX(-50%);
-    width: min(1920px, 100vw); /* 1920を基準に縮む */
-    height: 100%;
-    background-image: url("../assets/img/background.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center top;
-  }
-
-  /* 背景内の “KOMATTA…” を横移動（疑似） */
-  .pc-bg__inner::before{
-    content:"KOMATTA...   KOMATTA...   KOMATTA...   KOMATTA...   KOMATTA...";
-    position:absolute;
-    left:-40%;
-    top: 18%;
-    font-size: clamp(40px, 6vw, 96px);
-    font-weight: 800;
-    letter-spacing: 0.04em;
-    color: rgba(255,255,255,0.55);
-    white-space: nowrap;
-    animation: bg-marquee 28s linear infinite;
-    text-shadow: 0 2px 0 rgba(0,0,0,0.02);
-  }
-
-  .pc-bg__inner::after{
-    content:"KOMATTA...   KOMATTA...   KOMATTA...";
-    position:absolute;
-    left:-30%;
-    top: 62%;
-    font-size: clamp(32px, 5vw, 72px);
-    font-weight: 800;
-    letter-spacing: 0.04em;
-    color: rgba(255,255,255,0.45);
-    white-space: nowrap;
-    animation: bg-marquee 36s linear infinite;
-  }
-
-  @keyframes bg-marquee{
-    0%   { transform: translateX(0); }
-    100% { transform: translateX(40%); } /* 右→左じゃなく見える場合は符号逆にする */
-  }
-}
-
-/* 固定CTA（常にTOP固定で追従） */
+/* ========== fixed CTA ========== */
 .cta-fixed{
   position: fixed;
   left: 50%;
@@ -209,4 +62,793 @@ img{
   height:100%;
   object-fit: cover;
   display:block;
+}
+
+/* ========== PC background (color + KOMATTA marquee) ========== */
+.pc-bg{
+  display:none; /* SPでは非表示 */
+}
+
+@media (min-width: 768px){
+  body{
+    background: var(--bg-cream);
+  }
+
+  .pc-bg{
+    display:block;
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .pc-bg__inner{
+    position:absolute;
+    inset:0;
+    background: var(--bg-cream);
+  }
+
+  .marquee{
+    position:absolute;
+    left:0;
+    width:100%;
+    overflow:hidden;
+  }
+
+  .marquee__track{
+    display:flex;
+    gap: 60px;
+    white-space: nowrap;
+    will-change: transform;
+
+    font-family:
+      "M PLUS Rounded 1c",
+      "Zen Maru Gothic",
+      "Hiragino Maru Gothic ProN",
+      "Yu Gothic",
+      system-ui, sans-serif;
+
+    font-weight: 900;
+    letter-spacing: 0.06em;
+    color: rgba(255,255,255,0.35);
+
+    animation: marquee-left 40s linear infinite;
+  }
+
+  .marquee__track span{
+    font-size: clamp(34px, 5vw, 110px);
+  }
+
+  /* 行位置 */
+  .marquee--1{ top: 10%; }
+  .marquee--2{ top: 48%; }
+  .marquee--3{ top: 76%; }
+
+  /* 行ごとにスピード/薄さ変更 */
+  .marquee--2 .marquee__track{
+    animation-duration: 55s;
+    color: rgba(255,255,255,0.25);
+  }
+  .marquee--3 .marquee__track{
+    animation-duration: 70s;
+    color: rgba(255,255,255,0.18);
+  }
+
+  @keyframes marquee-left{
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-60%); }
+  }
+}
+
+/* ========== HERO (FV) ========== */
+.hero{
+  padding: 0;          /* FVは余白なしで画像を優先 */
+  position: relative;
+  overflow: hidden;
+  background: #fff;
+}
+
+/* FV背景画像 */
+.hero__bg img{
+  width: 100%;
+  height: auto;
+  display:block;
+}
+
+/* 猫レイヤー（FVの上に重ねる） */
+.hero__cat{
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* 猫本体の配置：まずは仮。スクショ見ながら微調整する */
+.cat-body{
+  position: absolute;
+  width: 72%;
+  left: 50%;
+  bottom: 6%;
+  transform: translateX(-50%);
+}
+
+/* 腕：肘固定して“手先が上下っぽく”動かす */
+.cat-arm{
+  position: absolute;
+  width: 20%;
+  left: 58%;
+  bottom: 14%;
+
+  /* 肘を固定するポイント（必要なら微調整） */
+  transform-origin: 18% 28%;
+
+  animation: paw-typing 0.28s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+@keyframes paw-typing{
+  0%{
+    transform: rotate(-3deg) translateY(0px);
+  }
+  100%{
+    transform: rotate(-6deg) translateY(4px);
+  }
+}
+/* 動きが苦手な人の設定（実務対応） */
+@media (prefers-reduced-motion: reduce){
+  .cat-arm{ animation: none; }
+}
+
+/* ========== PROBLEM (お悩み) ========== */
+.problem{
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+  background: #fff;
+}
+
+.problem__bg img{
+  width: 100%;
+  height: auto;
+  display:block;
+}
+
+/* 重ねるレイヤー */
+.problem__inner{
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* ふきだし：位置は “仮” だから後で微調整する */
+.pb{
+  position: absolute;
+  width: 72%;
+}
+
+/* 個別配置（カンプ寄せ） */
+.pb--1{ top: 14%; left: 7%;  width: 60%; }
+.pb--2{ top: 30%; right: 6%; width: 58%; }
+.pb--3{ top: 44%; left: 6%;  width: 56%; }
+.pb--4{ top: 61%; right: 3%; width: 56%; }
+
+/* ふきだしの出現アニメ（下からフェードイン） */
+.js-reveal{
+  opacity: 0;
+  transform: translateY(18px);
+  filter: blur(1px);
+  transition: opacity .6s ease, transform .6s ease, filter .6s ease;
+}
+
+.js-reveal.is-in{
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+/* 猫（穴のところ） */
+.problem__cat{
+  position: absolute;
+  left: 30%;
+  bottom: 15%;
+  width: 54%;
+  transform: translateX(-50%);
+}
+
+.problem__cat img{
+  position:absolute;
+  left:0;
+  bottom:0;
+  width:100%;
+  height:auto;
+}
+
+/* 初期：穴だけ見せる */
+.problem__cat .cat-hole{ opacity: 1; }
+.problem__cat .cat-mid,
+.problem__cat .cat-full{
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+/* セクション到達で猫が出る（mid→full） */
+.problem__cat.is-in .cat-mid{
+  animation: cat-pop-mid .35s ease forwards;
+}
+.problem__cat.is-in .cat-full{
+  animation: cat-pop-full .45s ease forwards;
+  animation-delay: .25s;
+}
+
+@keyframes cat-pop-mid{
+  to{ opacity:1; transform: translateY(0); }
+}
+@keyframes cat-pop-full{
+  0% { opacity:0; transform: translateY(14px); }
+  60%{ opacity:1; transform: translateY(-2px); }
+  100%{ opacity:1; transform: translateY(0); }
+}
+
+/* 動き苦手設定 */
+@media (prefers-reduced-motion: reduce){
+  .js-reveal{ transition:none; opacity:1; transform: translate(-50%,0); filter:none; }
+  .problem__cat .cat-mid, .problem__cat .cat-full{ opacity:1; transform:none; animation:none; }
+}
+
+/* ability section */
+.ability{
+  padding: 0;
+}
+
+.ability__stack{
+  position: relative;
+  max-width: 390px;
+  margin: 0 auto;
+}
+
+.ability__img{
+  width: 100%;
+  display: block;
+}
+
+/* actually帯 */
+.ability__badge{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* ===== CTAをable.pngの中に入れる ===== */
+.ability__cta-inside{
+  position: absolute;
+  left: 50%;
+  bottom: 3.5%;   /* ←ここが高さ調整ポイント */
+  transform: translateX(-50%);
+  width: 86%;   /* 少し内側に入れる */
+  z-index: 3;
+}
+
+.ability__cta-inside img{
+  width: 100%;
+  display: block;
+}
+
+/* ===== Variation section ===== */
+.variation{
+  max-width: 390px;
+  margin: 0 auto;
+  padding: 0;                 /* 共通paddingの影響を完全に切る */
+  overflow: hidden;
+
+  /* 背景は縦に敷き詰める（重要） */
+  background-image: url("../assets/img/variation.png");
+  background-position: top center;
+  background-size: 100% auto;
+  background-repeat: repeat-y;
+
+  /* 足りない時の保険色（画像の地色に寄せる） */
+  background-color: #dff3f3;
+}
+
+/* カルーセルの位置は「中の余白」で作る */
+.variation .carousel{
+  margin-top: 0;
+  padding-top: 175px;         /* ← “見出しエリア” 分。ここで調整 */
+  padding-bottom: 65px;       /* ← 下は80はデカいので一旦控えめ */
+}
+
+/* ===== Carousel ===== */
+.carousel{
+  width: 100%;
+  overflow: hidden;
+  margin-top: 24px;
+}
+
+.carousel__track{
+  display: flex;
+  gap: 24px;
+  width: max-content;
+  margin: 0 auto;         /* ★真ん中寄せ */
+  will-change: transform;
+  animation: variation-loop var(--loop-duration, 18s) linear infinite;
+}
+
+@keyframes variation-loop{
+  from { transform: translate3d(0,0,0); }
+  to   { transform: translate3d(calc(-1 * var(--loop-distance, 0px)),0,0); }
+}
+
+.carousel__item{
+  flex: 0 0 auto;
+  width: 160px;        /* ←まずは固定でカンプ寄せ（あとで微調整） */
+}
+
+.carousel__item img{
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+@media (prefers-reduced-motion: reduce){
+  .carousel__track{ animation: none; }
+}
+
+
+/* ===== Course section ===== */
+.course{
+  padding: 0;
+  margin: 0;
+}
+
+.course__stack{
+  position: relative;
+  max-width: 390px;
+  margin: 0 auto;
+}
+
+.course__bg{
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* 文字・CTAを背景の上に重ねる */
+.course__content{
+  position: absolute;
+  inset: 0;
+  padding: 14% 10% 18%;  /* 下を少し詰めてCTA+猫に余裕 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  z-index: 1;
+}
+
+.course__eyebrow{
+  margin: 0 0 10px;
+  font-weight: 800;
+  color: #3b86a8;
+  line-height: 1.15;
+  font-size: 24px;        /* カンプ寄せで少し上げ */
+}
+.course__eyebrow span{
+  display: block;          /* (2時間) を下に落とす */
+  margin-top: 2px;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+/* リスト全体の配置を「背景の数字に合わせた左余白」で固定 */
+.course__num{
+  display: none;
+}
+
+.course__list{
+  width: 100%;
+  margin: 22px 0 0;
+  padding-left: 25%;   /* ←ここが肝。数字の右から始める位置 */
+  padding-right: 10%;
+  display: grid;
+  gap: 20px;           /* 行間はカンプ寄せで少し広め */
+}
+
+/* liのgridは不要になる */
+.course__list li{
+  display: block;
+}
+
+/* テキスト */
+.course__txt{
+  font-weight: 800;
+  color: #5a4b3f;
+  display: block;
+  text-align: left;
+  font-size: 20px;
+  line-height: 1.28;
+}
+
+/* CTA：下に寄せる */
+.course__cta{
+  width: 100%;
+  margin-top: auto;       /* これで下に落ちる */
+  transform: translateY(-14px); /* 少しだけ上に戻す：微調整 */
+  display: block;
+}
+
+.course__cta img{
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* 猫：右下に配置 */
+.course__cat{
+  position: absolute;
+  right: 8%;
+  bottom: 0%;
+  width: 25%;
+  height: auto;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* 下からスライドイン */
+.js-slide-up{
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity .7s ease, transform .7s ease;
+}
+.js-slide-up.is-inview{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce){
+  .js-slide-up{ transition: none; opacity: 1; transform: none; }
+}
+
+/* ===== Detail section ===== */
+.detail{
+  padding: 0;
+  margin: 0;
+}
+
+.detail__inner{
+  max-width: 390px;
+  margin: 0 auto;
+  padding: 18px 18px 26px;
+  background: #fff;
+}
+
+/* リボン */
+.detail__title{
+  margin: 0 0 14px;
+  display: flex;
+  justify-content: center;
+}
+.detail__ribbon{
+  width: min(86%, 320px);
+  height: auto;
+  display: block;
+}
+
+/* 中身（2カラム + 仕切り線） */
+.detail__list{
+  margin: 0;
+  padding: 0;
+}
+
+.detail__row{
+  display: grid;
+  grid-template-columns: 86px 1fr;
+  column-gap: 14px;
+  align-items: start;
+  padding: 14px 0;
+  border-top: 2px solid rgba(126, 187, 214, 0.35); /* 薄い水色ライン */
+}
+
+.detail__row:first-child{
+  border-top: 0;
+  padding-top: 6px;
+}
+
+.detail__row dt{
+  margin: 0;
+  font-weight: 800;
+  color: #5a4b3f; /* こげ茶 */
+  font-size: 16px;
+  line-height: 1.25;
+}
+
+.detail__row dd{
+  margin: 0;
+  font-weight: 800;
+  color: #5a4b3f;
+  font-size: 18px;      /* カンプの太め感 */
+  line-height: 1.35;
+  letter-spacing: 0.01em;
+}
+
+/* 場所みたいな複数行が詰まるのを防ぐ */
+.detail__row dd br{
+  content: "";
+}
+
+.detail__title{
+  position: relative;
+  margin: 0 0 18px;
+  display: flex;
+  justify-content: center;
+}
+
+.detail__ribbon{
+  width: min(86%, 320px);
+  height: auto;
+  display: block;
+}
+
+.detail__title-text{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: 800;
+  font-size: 24px;
+  color: #3b86a8; /* カンプの青 */
+}
+
+@media (max-width: 360px){
+  .detail__row{
+    grid-template-columns: 78px 1fr;
+    column-gap: 12px;
+  }
+  .detail__row dd{ font-size: 17px; }
+}
+
+/* ===== Instructor section ===== */
+.instructor{
+  padding: 0;
+  margin: 0;
+}
+
+.instructor__stack{
+  position: relative;
+  max-width: 390px;
+  margin: 0 auto;
+}
+
+.instructor__bg{
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* 上に重ねる */
+.instructor__content{
+  position: absolute;
+  inset: 0;
+  padding: 12% 8% 10%;
+  text-align: center;
+  z-index: 1;
+}
+
+/* 見出し */
+.instructor__headline{
+  margin: 0 0 8px;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 1.15;
+  color: #f0a03a; /* オレンジ系 */
+  letter-spacing: .02em;
+}
+
+.instructor__sub{
+  margin: 0 0 16px;
+  font-weight: 900;
+  font-size: 16px;
+  color: #5a4b3f;
+  letter-spacing: .01em;
+}
+
+/* 2人並び */
+.instructor__grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  align-items: start;
+  margin: 6px auto 18px;
+}
+
+.instructor__card{
+  margin: 0;
+}
+
+.instructor__avatar{
+  width: 100%;
+  max-width: 164px;  /* 円のサイズ */
+  height: auto;
+  display: block;
+  margin: 0 auto 10px;
+  border-radius: 50%;
+}
+
+.instructor__cap{
+  display: grid;
+  gap: 4px;
+}
+
+.instructor__role{
+  font-weight: 900;
+  font-size: 14px;
+  color: #5a4b3f;
+}
+
+.instructor__name{
+  font-weight: 900;
+  font-size: 22px;
+  color: #5a4b3f;
+}
+
+/* ふきだし（白い雲） */
+
+.instructor__worry{
+  margin: 50px auto 18px;
+  text-align: left;      /* ← 中央から左寄せに変更 */
+  padding-left: 30%;     /* ← 右へ移動の量（調整ポイント） */
+}
+
+.instructor__worry p{
+  margin: 0;
+  font-weight: 900;
+  font-size: 16px;
+  line-height: 1.35;
+  color: #5a4b3f;
+}
+
+.instructor__worry p + p{
+  margin-top: 6px;
+}
+
+/* オレンジの一言 */
+.instructor__cheer{
+  margin: 70px 0 10px;
+  font-weight: 900;
+  font-size: 26px;
+  color: #f0a03a;
+  letter-spacing: .02em;
+}
+
+/* 説明文 */
+.instructor__desc{
+  margin: 10px 0 0 0;
+  font-weight: 900;
+  font-size: 18px;
+  line-height: 1.8;
+  color: #5a4b3f;
+}
+
+/* 小さい端末調整 */
+@media (max-width: 360px){
+  .instructor__headline{ font-size: 22px; }
+  .instructor__name{ font-size: 20px; }
+  .instructor__bubble p{ font-size: 17px; }
+  .instructor__desc{ font-size: 17px; }
+  .instructor__avatar{ max-width: 150px; }
+}
+
+/* ===== Closing section ===== */
+.closing{
+  padding: 0;
+  margin: 0;
+}
+
+.closing__stack{
+  position: relative;
+  max-width: 390px;
+  margin: 0 auto;
+
+  background-image: url("../assets/img/closing.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  /* ← ここで高さを作れる */
+  padding: 10% 0 10%;
+
+
+}
+.closing__content{
+  position: relative; /* absoluteやめてOK（背景が下まで伸びる） */
+  padding: 0 8%;
+  text-align: center;
+}
+
+/* 見出し */
+.closing__headline{
+  margin: 0 0 10px;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 1.35;
+  color: #2f7fa7; /* カンプの青寄せ */
+  letter-spacing: .01em;
+}
+
+/* 3体 */
+.closing__chars{
+  display: flex;
+  justify-content: center;
+  gap: 0;                /* ←空白ゼロ */
+  align-items: flex-end;
+  margin: 6px auto 10px;
+  width: 92%;
+}
+
+.closing__char{
+  height: 120px;         /* ←同じ高さに揃える（調整OK） */
+  width: auto;
+  display: block;
+  margin: 0 -6px;        /* ←間の“隙間感”が残るなら少し重ねる */
+}
+
+/* 説明 */
+.closing__lead{
+  margin: 8px 0 10px;
+  font-weight: 900;
+  font-size: 16px;
+  line-height: 1.65;
+  color: #5a4b3f;
+}
+
+/* 注釈 */
+.closing__note{
+  margin: 50px 0 10px;
+  font-weight: 900;
+  font-size: 15px;
+  color: #5a4b3f;
+  letter-spacing: .02em;
+}
+
+/* CTA */
+.closing__cta{
+  width: 100%;
+  display: block;
+  margin: 0 auto;
+}
+.closing__cta img{
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ===== Slide-in animation (right -> in) ===== */
+.js-slide-right{
+  opacity: 0;
+  transform: translateX(22px);
+  transition: opacity .7s ease, transform .7s ease;
+  will-change: transform, opacity;
+}
+.js-slide-right.is-inview{
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* motion苦手な人 */
+@media (prefers-reduced-motion: reduce){
+  .js-slide-right{
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ちょい小さい端末 */
+@media (max-width: 360px){
+  .closing__headline{ font-size: 20px; }
+  .closing__char{ max-width: 104px; }
+  .closing__cta{ width: 86%; }
 }

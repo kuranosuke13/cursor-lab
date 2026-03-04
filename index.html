@@ -4,42 +4,264 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>LP</title>
+
+  <!-- 丸ゴシック（Google Fonts） -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@700;800;900&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="css/styles.css" />
 </head>
+
 <body>
-  <body>
-  <!-- PC背景（固定） -->
+  <!-- PC背景（固定：カラー背景＋KOMATTA流れる） -->
   <div class="pc-bg" aria-hidden="true">
-    <div class="pc-bg__inner"></div>
+    <div class="pc-bg__inner">
+      <div class="marquee marquee--1">
+        <div class="marquee__track">
+          <span>KOMATTA...</span><span>KOMATTA...</span><span>KOMATTA...</span><span>KOMATTA...</span><span>KOMATTA...</span>
+        </div>
+      </div>
+
+      <div class="marquee marquee--2">
+        <div class="marquee__track">
+          <span>KOMATTA...</span><span>KOMATTA...</span><span>KOMATTA...</span><span>KOMATTA...</span><span>KOMATTA...</span>
+        </div>
+      </div>
+
+      <div class="marquee marquee--3">
+        <div class="marquee__track">
+          <span>KOMATTA...</span><span>KOMATTA...</span><span>KOMATTA...</span><span>KOMATTA...</span><span>KOMATTA...</span>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- 固定CTA（トップ固定） -->
   <div class="cta-fixed">
-    <a class="cta-fixed__link" href="#apply" aria-label="3/24(火)の講座に申し込む">
+    <a class="cta-fixed__link" href="https://docs.google.com/forms/d/e/1FAIpQLSfhA4uG36DicuSXji0oUrgsfPVl2zb_XDmJnO6uMN7c9T1RgA/viewform" aria-label="3/24(火)の講座に申し込む">
       <img src="assets/img/CTA.png" alt="3/24(火)の講座に申し込む">
     </a>
   </div>
 
   <!-- 中央コンテンツ（スマホ幅390px） -->
   <div class="lp">
-    <header class="hero" id="top">
-      <!-- ここは次で作り込む（FV） -->
-    </header>
+<header class="hero" id="top">
+  <div class="hero__bg">
+    <img src="assets/img/FV.png" alt="">
+  </div>
 
+  <div class="hero__cat">
+    <!-- 猫本体（腕なし想定） -->
+    <img src="assets/img/cat-body.png" class="cat-body" alt="">
+
+    <!-- 腕（肘固定で動かす） -->
+    <img src="assets/img/cat-arm.png" class="cat-arm" alt="">
+  </div>
+</header>
     <main>
-      <section class="problem" id="problem"></section>
-      <section class="no-sense" id="no-sense"></section>
-      <section class="variation" id="variation"></section>
-      <section class="contents" id="contents"></section>
-      <section class="details" id="details"></section>
-      <section class="instructor" id="instructor"></section>
-      <section class="closing" id="apply"></section>
-    </main>
+<section class="problem" id="problem">
+  <div class="problem__bg">
+    <img src="assets/img/nayami_bg.png" alt="">
+  </div>
 
-    <footer class="footer"></footer>
+  <div class="problem__inner">
+    <!-- ふきだし（順番に出す） -->
+    <img class="pb pb--1 js-reveal" src="assets/img/speech_bubble1.png" alt="">
+    <img class="pb pb--2 js-reveal" src="assets/img/speech_bubble2.png" alt="">
+    <img class="pb pb--3 js-reveal" src="assets/img/speech_bubble3.png" alt="">
+    <img class="pb pb--4 js-reveal" src="assets/img/speech_bubble4.png" alt="">
+
+    <!-- 猫（穴→出現途中→完成） -->
+    <div class="problem__cat js-cat">
+      <img class="cat-hole" src="assets/img/hole.png" alt="">
+      <img class="cat-mid"  src="assets/img/hole_cat1.png" alt="">
+      <img class="cat-full" src="assets/img/hole_cat2.png" alt="">
+    </div>
+  </div>
+</section>
+<section class="ability" id="ability">
+  <div class="ability__stack">
+    <img class="ability__img" src="assets/img/able.png" alt="できるようになること">
+
+    <!-- 重ねる帯：actually.png（上→下フェードイン） -->
+    <img class="ability__badge js-fade-down"
+         src="assets/img/actually.png"
+         alt="実はセンスの問題ではありません！">
+
+    <!-- able.pngの中に重ねるCTA -->
+    <a class="ability__cta-inside" href="https://docs.google.com/forms/d/e/1FAIpQLSeuk0cow_6o2HVt0fTUGCsJ51D6zOTfs0imCjdH0ioTqGSXXw/viewform">
+      <img src="assets/img/CTA1.png" alt="迷っていることを聞いてみる">
+    </a>
+  </div>    
+</section>
+
+<section class="variation" id="variation">
+  <div class="carousel">
+    <div class="carousel__track js-variation-track">
+      <div class="carousel__item"><img src="assets/img/flyer1.png" alt=""></div>
+      <div class="carousel__item"><img src="assets/img/flyer2.png" alt=""></div>
+      <div class="carousel__item"><img src="assets/img/flyer3.png" alt=""></div>
+      <div class="carousel__item"><img src="assets/img/flyer4.png" alt=""></div>
+    </div>
+  </div>
+</section>
+
+<section class="course" id="course">
+  <div class="course__stack">
+    <!-- 背景（そのまま貼る） -->
+    <img class="course__bg" src="assets/img/course_bg.png" alt="">
+
+    <!-- 上に重ねる中身 -->
+    <div class="course__content">
+      <p class="course__eyebrow">講座内容<br><span>(2時間)</span></p>
+
+      <ul class="course__list" aria-label="講座内容">
+        <li><span class="course__num">01</span><span class="course__txt">Canvaってなに？<br>テンプレートの活用法</span></li>
+        <li><span class="course__num">02</span><span class="course__txt">色・フォント・配置で<br>ちゃんと見えるコツ</span></li>
+        <li><span class="course__num">03</span><span class="course__txt">実際にテンプレを使って、<br>チラシを作ってみよう！</span></li>
+      </ul>
+
+      <a class="course__cta" href="https://docs.google.com/forms/d/e/1FAIpQLSeuk0cow_6o2HVt0fTUGCsJ51D6zOTfs0imCjdH0ioTqGSXXw/viewform">
+        <img src="assets/img/CTA2.png" alt="困っていることを伝えてみる">
+      </a>
+    </div>
+
+    <!-- 猫（下からスライドイン） -->
+    <img class="course__cat js-slide-up" src="assets/img/cat.png" alt="" aria-hidden="true">
+  </div>
+</section>
+
+<section class="detail" id="detail">
+  <div class="detail__inner">
+    <h2 class="detail__title">
+      <img class="detail__ribbon" src="assets/img/ribbon.png" alt="講座詳細">
+      <span class="detail__title-text">講座詳細</span>
+</h2>    </h2>
+
+    <dl class="detail__list">
+      <div class="detail__row">
+        <dt>日時：</dt>
+        <dd>3/24(火) 10:30–12:30</dd>
+      </div>
+
+      <div class="detail__row">
+        <dt>場所：</dt>
+        <dd>
+          大阪市 東淀川区東中島1-20-12<br>
+          ユニゾーン新大阪 808号室
+        </dd>
+      </div>
+
+      <div class="detail__row">
+        <dt>定員：</dt>
+        <dd>6名</dd>
+      </div>
+
+      <div class="detail__row">
+        <dt>参加費：</dt>
+        <dd>3,500円</dd>
+      </div>
+
+      <div class="detail__row">
+        <dt>持ち物：</dt>
+        <dd>
+          スマホ／タブレット／ノートPC<br>
+          （いずれか）・充電器
+        </dd>
+      </div>
+    </dl>
+  </div>
+</section>
+
+<section class="instructor" id="instructor">
+  <div class="instructor__stack">
+    <!-- 背景 -->
+    <img class="instructor__bg" src="assets/img/instructor.png" alt="">
+
+    <!-- 上に重ねる -->
+    <div class="instructor__content">
+
+      <p class="instructor__headline">ITインストラクター×デザイナー</p>
+      <p class="instructor__sub">講師2名がひとつずつ丁寧にサポート</p>
+
+      <div class="instructor__grid" aria-label="講師紹介">
+        <!-- 左：ロゴ -->
+        <figure class="instructor__card">
+          <img class="instructor__avatar" src="assets/img/Ellipse 11.png" alt="オフィス蔵之助 ロゴ">
+          <figcaption class="instructor__cap">
+            <span class="instructor__role">ITインストラクター</span>
+            <span class="instructor__name">大石啓子</span>
+          </figcaption>
+        </figure>
+
+        <!-- 右：写真 -->
+        <figure class="instructor__card">
+          <img class="instructor__avatar" src="assets/img/Ellipse 12.png" alt="Webデザイナー 冨田真帆">
+          <figcaption class="instructor__cap">
+            <span class="instructor__role">Webデザイナー</span>
+            <span class="instructor__name">冨田真帆</span>
+          </figcaption>
+        </figure>
+      </div>
+
+      <!-- ふきだし -->
+      <div class="instructor__worry">
+        <p>パソコン操作がそもそも苦手…</p>
+        <p>Canvaを触ったことがない…</p>
+      </div>
+
+      <p class="instructor__cheer">そんな方もご安心ください！</p>
+
+      <p class="instructor__desc">
+        アカウント作成〜パソコン操作まで<br>
+        ひとつずつ丁寧に進めていくので、<br>
+        初めての方も安心してご参加いただけます。
+      </p>
+
+    </div>
+  </div>
+</section>
+
+<section class="closing" id="apply">
+  <div class="closing__stack">
+    <!-- 重ねる中身 -->
+    <div class="closing__content">
+      <h2 class="closing__headline">
+        依頼するほどじゃないけど、<br>
+        ちゃんとしたチラシが欲しい。
+      </h2>
+
+      <!-- アニメ：3体 -->
+      <div class="closing__chars" aria-label="キャラクター">
+        <img class="closing__char js-slide-right" data-delay="0"
+             src="assets/img/c_bear.png" alt="" aria-hidden="true">
+        <img class="closing__char js-slide-right" data-delay="140"
+             src="assets/img/c_cat.png" alt="" aria-hidden="true">
+        <img class="closing__char js-slide-right" data-delay="280"
+             src="assets/img/c_dog.png" alt="" aria-hidden="true">
+      </div>
+
+      <p class="closing__lead">
+        その気持ちに、きちんと応える2時間です。<br>
+        テンプレからナンタッて、もうプロっぽく。<br>
+        一緒に作ってみませんか？
+      </p>
+
+      <p class="closing__note">＼ Canva講座について質問がある方は ／</p>
+
+      <a class="closing__cta" href="https://docs.google.com/forms/d/e/1FAIpQLSeuk0cow_6o2HVt0fTUGCsJ51D6zOTfs0imCjdH0ioTqGSXXw/viewform">
+        <img src="assets/img/CTA2.png" alt="困っていることを伝えてみる">
+      </a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+    <!--<footer class="footer"></footer>-->
   </div>
 
   <script src="js/main.js" defer></script>
-</body>
 </body>
 </html>
