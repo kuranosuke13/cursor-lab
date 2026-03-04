@@ -2,6 +2,14 @@
 *{ box-sizing:border-box; }
 html,body{ margin:0; padding:0; }
 
+html{
+  scroll-behavior: smooth;
+}
+
+img{
+  display:block;
+}
+
 :root{
   --lp-width: 390px;
   --cta-h: 56px;          /* CTAの実高さに合わせて後で調整 */
@@ -507,7 +515,7 @@ section, header, footer{
 
 .course__list{
   width: 100%;
-  margin: 22px 0 0;
+  margin: 30px 0 0;
   padding-left: 25%;   /* ←ここが肝。数字の右から始める位置 */
   padding-right: 10%;
   display: grid;
@@ -525,8 +533,8 @@ section, header, footer{
   color: #5a4b3f;
   display: block;
   text-align: left;
-  font-size: 20px;
-  line-height: 1.28;
+  font-size: 18px;
+  line-height: 1.35;
 }
 
 /* CTA：下に寄せる */
@@ -698,7 +706,7 @@ section, header, footer{
 .instructor__headline{
   margin: 0 0 8px;
   font-weight: 900;
-  font-size: 24px;
+  font-size: 22px;
   line-height: 1.15;
   color: #f0a03a; /* オレンジ系 */
   letter-spacing: .02em;
@@ -784,7 +792,7 @@ section, header, footer{
 .instructor__desc{
   margin: 10px 0 0 0;
   font-weight: 900;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 1.8;
   color: #5a4b3f;
 }
