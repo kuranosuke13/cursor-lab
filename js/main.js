@@ -12,11 +12,11 @@
 
       // ふきだし：順番にフェードイン
       bubbles.forEach((el, i) => {
-        setTimeout(() => el.classList.add("is-in"), 220 * i);
+        setTimeout(() => el.classList.add("is-in"), 800 * i);
       });
 
       // 猫：少し遅らせて出す
-      if (cat) setTimeout(() => cat.classList.add("is-in"), 900);
+      if (cat) setTimeout(() => cat.classList.add("is-in"), 4000);
 
       io.unobserve(e.target);
     });
@@ -30,7 +30,9 @@ const fadeTargets = document.querySelectorAll(".js-fade-down");
 const io = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
-      entry.target.classList.add("is-visible");
+      setTimeout(() => {
+        entry.target.classList.add("is-visible");
+      }, 800);
       io.unobserve(entry.target);
     }
   });
